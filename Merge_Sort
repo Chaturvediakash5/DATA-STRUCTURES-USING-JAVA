@@ -1,0 +1,93 @@
+import java.util.*;
+public class merge_sort1 {
+    public static void main(String[]args)
+    {
+        Scanner  sc=new Scanner(System.in);
+        System.out.println("Enter  Size  of  Array");
+        int n=sc.nextInt();
+        int a[]=new int[n];
+        System.out.println("Enter Array Elements");
+        for(int i=0;i<n;i++)
+        {
+            a[i]=sc.nextInt();
+        }
+        sort(a,0,a.length-1);
+        System.out.println("\nSorted array");
+        printArray(a);
+    }
+    public static  void  sort(int a[],int l,int r)
+    {
+        if(l<r)
+        {
+            int m=(l+r)/2;
+         sort(a,l,m);
+            
+            sort(a,m+1,r);
+            merge(a,l,m,r);
+        }
+    }
+    public static  void merge(int a[],int l,int m,int r)
+    {
+        int n1 = m - l + 1;
+        int n2 = r - m;
+            /* Create temp arrays */
+        int L[] = new int [n1];
+        int R[] = new int [n2];
+  
+        /*Copy data to temp arrays*/
+        for (int i=0; i<n1; ++i)
+        {
+            L[i] = a[l + i];
+        }
+        for (int j=0; j<n2; ++j)
+        {
+            R[j] = a[m + 1+ j];
+        }
+  
+  
+        /* Merge the temp arrays */
+  
+        // Initial indexes of first and second subarrays
+        int i = 0, j = 0;
+  
+        // Initial index of merged subarry array
+        int k = l;
+        while (i < n1 && j < n2)
+        {
+            if (L[i] <= R[j])
+            {
+                a[k] = L[i];
+                i++;
+            }
+            else
+            {
+                a[k] = R[j];
+                j++;
+            }
+            k++;
+        }
+  
+        /* Copy remaining elements of L[] if any */
+        while (i < n1)
+        {
+            a[k] = L[i];
+            i++;
+            k++;
+        }
+  
+        /* Copy remaining elements of R[] if any */
+        while (j < n2)
+        {
+            a[k] = R[j];
+            j++;
+            k++;
+        }
+    }
+   public static void printArray(int a[])
+    {
+        int n = a.length;
+        for (int i=0; i<n; ++i)
+            System.out.print(a[i] + " ");
+        System.out.println();
+    }
+}
