@@ -1,0 +1,53 @@
+import java.io.*;
+import  java.util.*;
+//We  Are  Using Recursive  Approach
+/*We are Using Buffered Reader to take
+    input*/
+    
+class Binary_Search
+{
+    public static void main(String[]args)throws IOException {
+    BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+    System.out.println("Enter  Size of Array");
+    int n=Integer.parseInt(br.readLine());
+    System.out.println("Enter Array Elements");
+    int a[]=new int[n];
+    for(int i=0;i<n;i++)
+    {
+        a[i]=Integer.parseInt(br.readLine());
+    }
+    System.out.println("Enter  item  to  be searched");
+    int k=Integer.parseInt(br.readLine());
+    Arrays.sort(a);
+    int result=Search(a,0,a.length-1,k);
+    if(result==-1)
+    {
+        System.out.println("Element  is Not  Present");
+    }
+    else{
+        System.out.println("Element  is Present At Index  "+result);
+    }
+
+    }
+    public static int Search(int a[],int start,int end,int key)
+    {
+        
+        if(start<=end)
+        {
+            int  mid=start+(end-start)/2;
+            if(a[mid]==key)
+            {
+                return mid;
+            }
+            else if(a[mid]>key)
+            {
+                return  Search(a,start,mid-1,key);
+            }
+            else 
+            {
+                return Search(a,mid+1,end,key);
+            }
+        }
+        return -1;
+    }
+}
