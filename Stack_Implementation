@@ -1,0 +1,92 @@
+import java.util.*;
+import java.lang.*;
+class Stack_Implementation
+{
+    public static void main(String[]args)
+    {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("Enter Stack Size");
+    int stack_size=sc.nextInt();
+    int stack[]=new int[stack_size];
+    int top=-1;
+    for(;;)
+    {
+        System.out.println("1 For Insertion 2 For Deletion");
+        System.out.println("3 For Traversal 4 For Exit");
+        int choice=sc.nextInt();
+
+        if(choice<5)
+        {
+        switch(choice)
+        {
+            case 1:
+            System.out.println("Enter Item To Insert");
+            int item=sc.nextInt();
+           top= push(stack,item,stack_size,top);
+            break;
+            
+            case 2:
+            top=Delete(stack,top);
+            break;
+
+            case 3:
+            System.out.println("Items Present in Stack Are: ");
+            Traverse(stack,top);
+            break;
+
+            case 4:
+            System.exit(0);
+            break;
+        }
+    }
+    else{
+        System.out.println("Invalid Choice");
+    }
+
+    }
+}
+public static int push(int stack[],int item,int size,int top)
+{
+
+    if(top==(size-1))
+    {
+        System.out.println("Stack Over Flow");
+        
+    }
+    else
+
+    {
+        top+=1;
+        stack[top]=item;
+        System.out.println("Item Inserted Successfully");
+
+    }
+    return top;
+}
+public static void Traverse(int stack[],int top)
+{
+    for(int i=0;i<=top;i++)
+    {
+        System.out.print(stack[i]+" ");
+    }
+    System.out.println();
+    return;
+}
+public static int Delete(int stack[],int top)
+{
+    int Deleted=0;
+    if(top== -1)
+    {
+        System.out.println("Stack Under Flow");
+    }
+    else
+    {
+       Deleted=stack[top];
+        top=top-1;
+        System.out.println("Deleted Item is: "+Deleted);
+
+
+    }
+    return top;
+}
+}
