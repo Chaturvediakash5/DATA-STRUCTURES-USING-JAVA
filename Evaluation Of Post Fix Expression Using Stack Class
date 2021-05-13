@@ -1,0 +1,63 @@
+/*In this problem, you have to implement the evaluatePostFix() method 
+that will compute a postfix expression given to it in a string.
+
+Sample Input #
+expression = "921*-8-4+" 
+Sample Output #
+3
+Explanation #
+1st operation => 2 * 1 = 2,
+2nd operation => 9 - 2 = 7,
+3rd operation => 7 - 8 = -1,
+4th operation => -1 + 4 = 3
+*/
+import java.io.*;
+import java.util.*;
+public class Evaluation_Of_Postfix_Exp_Using_Stack {
+    public static void main(String[]args)throws IOException
+    {
+        InputStreamReader ir=new InputStreamReader(System.in);
+        BufferedReader br=new BufferedReader(ir);
+        System.out.println("Enter Post Fix Expression");
+        String s=br.readLine();
+        int len=s.length();
+
+       //Creation Of Stack
+        Stack<Integer> st1=new Stack<>();
+        for(int i=0;i<len;i++)
+        {
+            char c=s.charAt(i);
+            if(Character.isDigit(c))
+            {
+            st1.push(c - '0');
+            }
+            else
+            {
+                int val1 = st1.pop();
+                int val2 = st1.pop();
+
+                switch(c)
+                {
+                    case '+':
+                    st1.push(val2+val1);
+                    break;
+                      
+                    case '-':
+                    st1.push(val2- val1);
+                    break;
+                      
+                    case '/':
+                    st1.push(val2/val1);
+                    break;
+                      
+                    case '*':
+                    st1.push(val2*val1);
+                    break;
+                }
+            }
+
+        }
+        System.out.println(st1.pop());
+       
+    }
+}
