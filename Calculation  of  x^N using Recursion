@@ -1,0 +1,41 @@
+import java.util.*;
+class Cal_Power
+{
+    public static void main(String[]args)
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the Value of X");
+        int x=sc.nextInt();
+        System.out.println("Enter the value of N");
+        int n=sc.nextInt();
+        if(x==1)
+        {
+        System.out.println(x);
+        }
+      else if(n==1)
+        {
+        System.out.println(x);
+        }
+        else if(n==0)
+        {
+            System.out.println(1);
+        }
+        else
+        {
+        System.out.println(cal(x,n));
+        }
+    }
+    public static int cal(int x,int n)
+    {
+        int product=1;
+        if(n==0)
+        {
+            return 1;
+        }
+        else
+        {
+            product=x*cal(x,n-1);
+        }
+        return product;
+    }
+}
